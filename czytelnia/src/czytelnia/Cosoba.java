@@ -2,6 +2,8 @@ package czytelnia;
 
 import java.util.Calendar;
 
+import CzytelniaExceptions.CniewlasciwaDataException;
+
 public class Cosoba {
 	private String Imie;
 	private String Nazwisko;

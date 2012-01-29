@@ -1,4 +1,4 @@
-package czytelnia;
+package CzytelniaExceptions;
 
 public class CniewlasciwaDataException extends Exception {
 	
