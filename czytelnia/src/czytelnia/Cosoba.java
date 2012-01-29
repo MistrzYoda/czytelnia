@@ -1,12 +1,25 @@
 package czytelnia;
 
+import java.util.Calendar;
+
 public class Cosoba {
 	private String Imie;
 	private String Nazwisko;
+	private Calendar DataUrodzenia;
 	
-	public Cosoba(String i, String n) {
-		this.setImie(i);
-		this.setNazwisko(n);
+	public Cosoba() {
+		
+	}
+	
+	public Cosoba(String i, String n, Calendar d) throws CniewlasciwaDataException {
+		Calendar obecnaData = Calendar.getInstance();
+		if (d.after(obecnaData))
+				throw new CniewlasciwaDataException("Data urodzenia nie mo¿e byæ póŸniejsza ni¿ data dzisiejsza! Obiekt nie zosta³ utworzony.");
+		else {
+			this.setImie(i);
+			this.setNazwisko(n);		
+			this.setDataUrodzenia(d);
+		}
 	}
 
 	/**
@@ -37,8 +50,22 @@ public class Cosoba {
 		Nazwisko = nazwisko;
 	}
 	
+	/**
+	 * @return the dataUrodzenia
+	 */
+	public Calendar getDataUrodzenia() {
+		return DataUrodzenia;
+	}
+
+	/**
+	 * @param dataUrodzenia the dataUrodzenia to set
+	 */
+	public void setDataUrodzenia(Calendar dataUrodzenia) {
+		DataUrodzenia = dataUrodzenia;
+	}
+
 	public String toString() {
-		return this.Imie+" "+this.Nazwisko;
+		return this.getImie()+" "+this.getNazwisko()+", data ur. "+this.getDataUrodzenia().get(Calendar.YEAR)+"/"+(this.getDataUrodzenia().get(Calendar.MONTH)+1)+"/"+this.getDataUrodzenia().get(Calendar.DAY_OF_MONTH);
 	}
 	
 }
