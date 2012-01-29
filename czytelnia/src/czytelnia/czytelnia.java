@@ -18,7 +18,7 @@ public class czytelnia {
 			dataUrodzenia.set(1984,Calendar.MAY,16);
 			dataZapisania.set(2001, Calendar.APRIL,20);
 			
-			c3 = new Cczytelnik( new Cosoba("Andrzej","Lisowski",dataUrodzenia),dataZapisania );
+			c3 = new Cczytelnik( "Andrzej","Lisowski",dataUrodzenia,dataZapisania );
 		}
 		catch (Exception e) {
 			if (e instanceof CniewlasciwaDataException) {

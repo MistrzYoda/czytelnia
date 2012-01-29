@@ -2,32 +2,24 @@ package czytelnia;
 
 import java.util.Calendar;
 
-public class Cczytelnik {
+public class Cczytelnik extends Cosoba{
 	private static int Numer = 0; 
-	private Cosoba Dane;
 	private Calendar DataZapisania;
 	
 	public Cczytelnik() {
-		
+		super();
 	}
 	
-	public Cczytelnik(Cosoba o, Calendar d) throws CniewlasciwaDataException  {	
+	public Cczytelnik(String Imie, String Nazwisko, Calendar DataUrodzenia, Calendar DataZapisania) throws CniewlasciwaDataException  {	
+		super(Imie,Nazwisko,DataUrodzenia);
 		
-		if ( o.getDataUrodzenia().after(d) )
+		if ( this.getDataUrodzenia().after(DataZapisania) )
 			throw new CniewlasciwaDataException("Data zapisania nie mo¿e byæ póŸniejsza ni¿ data urodzenia czytelnika! Nie utworzono obiektu!");
 		else {
-			this.setDane(o);
-			this.setDataZapisania(d);
+			
+			this.setDataZapisania(DataZapisania);
 			this.Numer = ++this.Numer;
 		}
-	}
-	
-	public void setDane(Cosoba o) {
-		this.Dane = o;
-	}
-	
-	public Cosoba getDane() {
-		return this.Dane;
 	}
 
 	/**
@@ -52,6 +44,6 @@ public class Cczytelnik {
 	}
 	
 	public String toString() {
-		return "Numer: "+this.getNumer()+"\nDane osobowe czytelnika: "+this.getDane()+". Data zapisania: "+this.getDataZapisania().get(Calendar.YEAR)+"/"+(this.getDataZapisania().get(Calendar.MONTH)+1)+"/"+this.getDataZapisania().get(Calendar.DAY_OF_MONTH);
+		return "Numer: "+this.getNumer()+"\nDane osobowe czytelnika: "+this.getImie()+" "+this.getNazwisko()+", ur."+this.getDataUrodzenia().get(Calendar.YEAR)+"/"+(this.getDataUrodzenia().get(Calendar.MONTH)+1)+"/"+this.getDataUrodzenia().get(Calendar.DAY_OF_MONTH)+". Data zapisania: "+this.getDataZapisania().get(Calendar.YEAR)+"/"+(this.getDataZapisania().get(Calendar.MONTH)+1)+"/"+this.getDataZapisania().get(Calendar.DAY_OF_MONTH);
 	}
 }
