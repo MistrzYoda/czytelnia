@@ -62,17 +62,20 @@ public class Cezgemplarze {
 	public Cegzemplarz PobierzWolny() throws CmojWyjatek {
 		Iterator<Cegzemplarz> it = this.lista.iterator();
 		Cegzemplarz i = null;
+		Cegzemplarz out = null;
 		
 		while (it.hasNext()) {
 			i = it.next();
-			if ( !i.isWypozyczony() )
+			if ( !i.isWypozyczony() ) {
+				out = i;			
 				break;
-		}
+			}
+		}		
 		
-		if (i.equals(null))
+		if ( out==null )
 			throw new CmojWyjatek("Brak wolnego egzemplarza!");
 		
-		return i;
+		return out;
 	}
 	
 	public int LiczbaWolnych() {
@@ -89,7 +92,11 @@ public class Cezgemplarze {
 	}
 	
 	public int LiczbaZajetych() {
-		return this.lista.size() - this.LiczbaWolnych();	
+		return this.LiczbaEgzemplarzy() - this.LiczbaWolnych();	
 	}	
+	
+	public int LiczbaEgzemplarzy() {
+		return this.lista.size();
+	}
 	
 }

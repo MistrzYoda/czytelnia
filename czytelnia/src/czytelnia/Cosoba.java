@@ -7,15 +7,15 @@ import CzytelniaExceptions.CmojWyjatek;
 public class Cosoba {
 	private String Imie;
 	private String Nazwisko;
-	private Calendar DataUrodzenia;
+	private Ckalendarz DataUrodzenia;
 	
 	public Cosoba() {
 		
 	}
 	
-	public Cosoba(String i, String n, Calendar d) throws CmojWyjatek {
+	public Cosoba(String i, String n, Ckalendarz d) throws CmojWyjatek {
 		Calendar obecnaData = Calendar.getInstance();
-		if (d.after(obecnaData))
+		if (d.getCalendar().after(obecnaData))
 				throw new CmojWyjatek("Data urodzenia nie mo¿e byæ póŸniejsza ni¿ data dzisiejsza! Obiekt nie zosta³ utworzony.");
 		else {
 			this.setImie(i);
@@ -55,19 +55,19 @@ public class Cosoba {
 	/**
 	 * @return the dataUrodzenia
 	 */
-	public Calendar getDataUrodzenia() {
+	public Ckalendarz getDataUrodzenia() {
 		return DataUrodzenia;
 	}
 
 	/**
 	 * @param dataUrodzenia the dataUrodzenia to set
 	 */
-	public void setDataUrodzenia(Calendar dataUrodzenia) {
+	public void setDataUrodzenia(Ckalendarz dataUrodzenia) {
 		DataUrodzenia = dataUrodzenia;
 	}
 
 	public String toString() {
-		return this.getImie()+" "+this.getNazwisko()+", data ur. "+this.getDataUrodzenia().get(Calendar.YEAR)+"/"+(this.getDataUrodzenia().get(Calendar.MONTH)+1)+"/"+this.getDataUrodzenia().get(Calendar.DAY_OF_MONTH);
+		return this.getImie()+" "+this.getNazwisko()+", data ur. "+this.getDataUrodzenia().PobierzDate();
 	}
 	
 }
