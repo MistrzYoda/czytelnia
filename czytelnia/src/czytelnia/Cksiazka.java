@@ -1,18 +1,20 @@
 package czytelnia;
 
-import CzytelniaExceptions.CniepoprawnyISBNException;
+import CzytelniaExceptions.CmojWyjatek;
+
 
 public class Cksiazka {
 	private String Tytul;
 	private String ImieAutora;
 	private String NazwiskoAutora;
 	private Integer ISBN;
+	public Cezgemplarze Egzemplarze;
 	
 	public Cksiazka() {
-		
+		this.Egzemplarze = new Cezgemplarze();
 	}
 	
-	public Cksiazka(String t, String i, String n, Integer isbn) throws CniepoprawnyISBNException {
+	public Cksiazka(String t, String i, String n, Integer isbn) throws CmojWyjatek {
 		this.setImieAutora(i);
 		this.setNazwiskoAutora(n);
 		this.setTytul(t);
@@ -63,10 +65,15 @@ public class Cksiazka {
 	/**
 	 * @param iSBN the iSBN to set
 	 */
-	public void setISBN(Integer iSBN) throws CniepoprawnyISBNException {
+	public void setISBN(Integer iSBN) throws CmojWyjatek {
 		if (iSBN<0)
-			throw new CniepoprawnyISBNException(this.getTytul()+" - niepoprawny ISBN (<0))!");
+			throw new CmojWyjatek(this.getTytul()+" - niepoprawny ISBN (<0))!");
 		else
 			ISBN = iSBN;		
 	}
+	
+	public String toString() {
+		return this.getTytul()+" (ISBN="+this.getISBN()+") "+this.getImieAutora()+" "+this.getNazwiskoAutora() + "\n\nWypo¿yczone egzemplarze: "+this.Egzemplarze.LiczbaZajetych()+"\nWolne egzemplarze: "+this.Egzemplarze.LiczbaWolnych();
+	}
+
 }

@@ -2,9 +2,10 @@ package czytelnia;
 
 import java.util.Calendar;
 
-import CzytelniaExceptions.CniewlasciwaDataException;
+import CzytelniaExceptions.CmojWyjatek;
 
-public class Cczytelnik extends Cosoba{
+
+public class Cczytelnik extends Cosoba {
 	//private static int Numer = 0; 
 	private Calendar DataZapisania;
 	
@@ -12,7 +13,7 @@ public class Cczytelnik extends Cosoba{
 		super();
 	}
 	
-	public Cczytelnik(String Imie, String Nazwisko, Calendar DataUrodzenia, Calendar DataZapisania) throws CniewlasciwaDataException  {	
+	public Cczytelnik(String Imie, String Nazwisko, Calendar DataUrodzenia, Calendar DataZapisania) throws CmojWyjatek {	
 		super(Imie,Nazwisko,DataUrodzenia);
 		this.setDataZapisania(DataZapisania);
 		//this.Numer = ++this.Numer;
@@ -28,9 +29,9 @@ public class Cczytelnik extends Cosoba{
 	/**
 	 * @param dataZapisania the dataZapisania to set
 	 */
-	public void setDataZapisania(Calendar dataZapisania) throws CniewlasciwaDataException  {
+	public void setDataZapisania(Calendar dataZapisania) throws CmojWyjatek  {
 		if ( this.getDataUrodzenia().after(dataZapisania) )
-			throw new CniewlasciwaDataException("Data zapisania nie mo¿e byæ póŸniejsza ni¿ data urodzenia czytelnika!");
+			throw new CmojWyjatek("Data zapisania nie mo¿e byæ póŸniejsza ni¿ data urodzenia czytelnika!");
 		else
 			DataZapisania = dataZapisania;
 	}

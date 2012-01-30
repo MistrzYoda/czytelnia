@@ -2,7 +2,7 @@ package czytelnia;
 
 import java.util.Calendar;
 
-import CzytelniaExceptions.CniewlasciwaDataException;
+import CzytelniaExceptions.CmojWyjatek;
 
 public class Cosoba {
 	private String Imie;
@@ -13,10 +13,10 @@ public class Cosoba {
 		
 	}
 	
-	public Cosoba(String i, String n, Calendar d) throws CniewlasciwaDataException {
+	public Cosoba(String i, String n, Calendar d) throws CmojWyjatek {
 		Calendar obecnaData = Calendar.getInstance();
 		if (d.after(obecnaData))
-				throw new CniewlasciwaDataException("Data urodzenia nie mo¿e byæ póŸniejsza ni¿ data dzisiejsza! Obiekt nie zosta³ utworzony.");
+				throw new CmojWyjatek("Data urodzenia nie mo¿e byæ póŸniejsza ni¿ data dzisiejsza! Obiekt nie zosta³ utworzony.");
 		else {
 			this.setImie(i);
 			this.setNazwisko(n);		
